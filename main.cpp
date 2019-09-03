@@ -11,7 +11,7 @@ void ambush(Player protagonist, string enemyName, int enemyHealth, int enemyDiff
 
 int main()
 {
-    srand((int)time(0));
+    srand((int)time(0)); // Testing!
 
     string playerName;
     int classIndex, initAttack, initDefense, initHealth;
