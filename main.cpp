@@ -98,11 +98,19 @@ void ambush(Player protagonist, string enemyName, int enemyHealth, int enemyDiff
 {
     int enemyDamage, playerDamage, hitFactor;
     string input;
-    cout << "\n* B A T T L E   S T A R T *\n";
+    cout << "\n* A M B U S H   S T A R T *\n";
+while(enemyHealth > 0 && protagonist.get_hp() > 0)
+{
     enemyDamage = rand() % 10 * enemyDifficulty + 1;
-    cout << enemyName << " attacks first and deals " << enemyDamage << " damage.\n";
+    cout << enemyName << " attacks and deals " << enemyDamage << " damage.\n";
     protagonist.set_hp(protagonist.get_hp() - enemyDamage);
-    cout << "You now have " << protagonist.get_hp() << " hp.\n";
+    if(protagonist.get_hp() <= 0)
+    {
+        cout << "You died.\n";
+    }
+    else
+    {
+    cout << "You have " << protagonist.get_hp() << " hp remaining.\n";
     cout << "Would you like to slash (s), lance (l), or obliterate (o)?\n";
     getline(cin, input);
     if(input == "s")
@@ -111,10 +119,12 @@ void ambush(Player protagonist, string enemyName, int enemyHealth, int enemyDiff
         if(hitFactor <= 6)
         {
             playerDamage = 2 * protagonist.get_attack() * (rand() % 4 + 1);
+            cout << "Your slash is successful and you deal " << playerDamage << " damage to " << enemyName << "!\n";
         }
         else
         {
             playerDamage = 0;
+            cout << "Oops. You miss.\n";
         }
     }
     else if(input == "l")
@@ -123,10 +133,12 @@ void ambush(Player protagonist, string enemyName, int enemyHealth, int enemyDiff
         if(hitFactor <= 9)
         {
             playerDamage = protagonist.get_attack() * (rand() % 3 + 1);
+            cout << "Your lance is successful and you deal " << playerDamage << " damage to " << enemyName << "!\n";
         }
         else
         {
             playerDamage = 0;
+            cout << "Oops. You miss.\n";
         }
     }
     else if(input == "o")
@@ -135,18 +147,38 @@ void ambush(Player protagonist, string enemyName, int enemyHealth, int enemyDiff
         if(hitFactor <= 1)
         {
             playerDamage = 4 * protagonist.get_attack() * (rand() % 5 + 1);
+            cout << "Wow! That hit? You deal a massive " << playerDamage << " damage to " << enemyName << "!\n";
         }
         else
         {
             playerDamage = 0;
+            cout << "As expected, you miss.\n";
         }
     }
     else
     {
         playerDamage = 0;
-        enemyDamage = rand() % 6 + 1;
-        cout << "You attempt a nonexistent attack and make a fool of yourself!\n";
+        cout << "You attempt a nonexistent attack and end up doing nothing...\n";
     }
     enemyHealth -= playerDamage;
-    cout << enemyName << " now has " << enemyHealth << " hp remaining.\n"; // Make all of this a loop
+    if(enemyHealth > 0)
+    {
+    cout << enemyName << " has " << enemyHealth << " hp remaining.\n";
+    }
+    else
+    {
+        // Do nothing
+    }
+    }
+}
+if(enemyHealth <= 0)
+{
+    cout << "Congratulations. You have defeated " << enemyName << ".\n";
+    cout << "Here are your stat buffs.\n";
+}
+else
+{
+    cout << "Game over.\n";
+    // Start game over sequence
+}
 }
