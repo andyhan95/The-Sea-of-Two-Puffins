@@ -23,11 +23,7 @@ class Player
         void set_defense(int new_defense);
     private:
         string name;
-        int classIndex;
-        int wealth;
-        int hp;
-        int attack;
-        int defense;
+        int classIndex, wealth, hp, attack, defense;
 };
 
 Player::Player()
