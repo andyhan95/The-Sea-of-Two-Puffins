@@ -19,6 +19,8 @@ class Player
         int get_defense() const;
         void set_wealth(int new_wealth);
         void set_hp(int new_hp);
+        void set_attack(int new_attack);
+        void set_defense(int new_defense);
     private:
         string name;
         int classIndex;
@@ -63,13 +65,9 @@ string Player::get_class() const
     {
         return "archer";
     }
-    else if(classIndex == 2)
-    {
-        return "mage";
-    }
     else
     {
-        return "coward";
+        return "mage";
     }
 }
 
@@ -83,13 +81,9 @@ string Player::get_class_capitalized() const
     {
         return "Archer";
     }
-    else if(classIndex == 2)
-    {
-        return "Mage";
-    }
     else
     {
-        return "Coward";
+        return "Mage";
     }
 }
 
@@ -121,6 +115,16 @@ void Player::set_wealth(int change)
 void Player::set_hp(int change)
 {
     hp = change;
+}
+
+void Player::set_attack(int change)
+{
+    attack = change;
+}
+
+void Player::set_defense(int change)
+{
+    defense = change;
 }
 
 #endif
